@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+  server:
+    build: ./server
+    volumes:
+      - ./server:/server/
+    ports:
+      - "4444:4444"
+    depends_on:
+      - mongo
+    environment:
+      SERVER_PORT: 4444
+      MONGO_URI: "mongodb://mongo/nodeHeadless"
+
+  mongo:
+    image: "mongo"
+    volumes:
+      - ./dev/mongo:/data
