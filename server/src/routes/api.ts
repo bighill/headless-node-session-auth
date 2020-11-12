@@ -4,8 +4,7 @@ const router = express.Router();
 import Reply from "../util/globalReply";
 
 router.get("/test", (req, res) => {
-  const reply = Reply({ message: "API test" });
-  return res.send(reply);
+  return res.send(Reply({ message: "API test" }));
 });
 
 export default router;
