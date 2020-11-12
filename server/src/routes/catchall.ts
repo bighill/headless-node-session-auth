@@ -4,7 +4,7 @@ const router = express.Router();
 import Reply from "../util/globalReply";
 
 const catchAllMessage = (req: Request, res: Response) => {
-  const reply = Reply({ request: req, message: "Not found" });
+  const reply = Reply({ message: "Not found" });
   res.status(404).send(reply);
 };
 

@@ -11,7 +11,7 @@ services:
       - mongo
     environment:
       SERVER_PORT: 4444
-      MONGO_URI: "mongodb://mongo/nodeHeadless"
+      MONGO_URL: "mongodb://mongo/nodeHeadless"
 
   mongo:
     image: "mongo"
