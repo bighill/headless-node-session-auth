@@ -4,5 +4,5 @@ export default (req: Request, res: Response, next: NextFunction) => {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.status(401).end();
+  return res.status(401).end();
 };

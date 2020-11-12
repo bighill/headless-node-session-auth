@@ -1,1 +1,0 @@
-{"version":3,"file":"devMW.js","sourceRoot":"","sources":["../../src/middleware/devMW.ts"],"names":[],"mappings":";;AAEA,kBAAe,CAAC,GAAY,EAAE,GAAa,EAAE,IAAkB,EAAE,EAAE;IACjE,OAAO,CAAC,GAAG,CAAC,GAAG,GAAG,CAAC,MAAM,IAAI,GAAG,CAAC,WAAW,EAAE,CAAC,CAAC;IAChD,IAAI,EAAE,CAAC;AACT,CAAC,CAAC"}

@@ -8,32 +8,24 @@ router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
       const reply = Reply({
-        request: req,
         error: err,
         message: "Bad request",
       });
       return res.status(400).send(reply);
     }
     if (!user) {
-      const reply = Reply({
-        request: req,
-        message: "Unauthorized",
-      });
+      const reply = Reply({ message: "Unauthorized" });
       return res.status(401).send(reply);
     }
     req.logIn(user, (err) => {
       if (err) {
         const reply = Reply({
-          request: req,
           error: err,
           message: "Bad request",
         });
         return res.status(400).send(reply);
       }
-      const reply = Reply({
-        request: req,
-        message: "Login was successful",
-      });
+      const reply = Reply({ message: "Login was successful" });
       return res.send(reply);
     });
   })(req, res, next);
@@ -41,10 +33,7 @@ router.post("/login", (req, res, next) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  const reply = Reply({
-    request: req,
-    message: "Logout was successful",
-  });
+  const reply = Reply({ message: "Logout was successful" });
   res.send(reply);
 });
 
