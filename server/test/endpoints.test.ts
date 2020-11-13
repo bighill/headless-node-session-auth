@@ -21,6 +21,10 @@ describe("Endpoints that should fail", () => {
     return request(app).get("/api/test").expect(401);
   });
 
+  it("API user endpoint should fail", () => {
+    return request(app).get("/api/user").expect(401);
+  });
+
   it("Login should fail (user doesn't exist)", () => {
     return request(app).post("/auth/login").send(_credentials).expect(401);
   });
@@ -49,5 +53,9 @@ describe("Endpoints that should fail", () => {
 
   it("API test endpoint should succeed", () => {
     return request(app).get("/api/test").set("Cookie", cookie).expect(200);
+  });
+
+  it("API user endpoint should succeed", () => {
+    return request(app).get("/api/user").set("Cookie", cookie).expect(200);
   });
 });
