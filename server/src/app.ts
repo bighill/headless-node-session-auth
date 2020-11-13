@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import session from "./lib/session";
 import passport from "./lib/passport";
 import securedMW from "./middleware/securedMW";
@@ -10,6 +11,7 @@ import catchall from "./routes/catchall";
 const app = express();
 app.set("port", String(process.env.SERVER_PORT));
 
+app.use(cors());
 app.use(session);
 app.use(passport.initialize());
 app.use(passport.session());
