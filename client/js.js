@@ -1,4 +1,3 @@
-const url = "http://localhost:4444";
 const doRegister = document.getElementById("do-register");
 const doLogin = document.getElementById("do-login");
 const doLogout = document.getElementById("do-logout");
@@ -13,7 +12,7 @@ const handleRegister = (ev) => {
     password: doRegister.querySelector('input[type="password"]').value,
   };
 
-  fetch(`${url}/auth/register`, {
+  fetch(`/auth/register`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -31,7 +30,7 @@ const handleLogin = (ev) => {
     password: doLogin.querySelector('input[type="password"]').value,
   };
 
-  fetch(`${url}/auth/login`, {
+  fetch(`/auth/login`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
@@ -44,7 +43,7 @@ const handleLogin = (ev) => {
 const handleLogout = (ev) => {
   ev.preventDefault();
 
-  fetch(`${url}/auth/logout`)
+  fetch(`/auth/logout`)
     .then((res) => res.json())
     .then((res) => console.log(res))
     .catch(console.error);
@@ -53,7 +52,7 @@ const handleLogout = (ev) => {
 const handleTest = (ev) => {
   ev.preventDefault();
 
-  fetch(`${url}/api/test`)
+  fetch(`/api/test`)
     .then((res) => res.json())
     .then((res) => console.log(res))
     .catch(console.error);
@@ -62,7 +61,7 @@ const handleTest = (ev) => {
 const handleUser = (ev) => {
   ev.preventDefault();
 
-  fetch(`${url}/api/user`)
+  fetch(`/api/user`)
     .then((res) => res.json())
     .then((res) => console.log(res))
     .catch(console.error);
