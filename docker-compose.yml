@@ -2,9 +2,9 @@ version: "2"
 
 services:
   node:
-    build: ./server
+    build: ./node
     volumes:
-      - ./server:/server/
+      - ./node:/node/
     depends_on:
       - mongo
     environment:
