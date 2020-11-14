@@ -20,11 +20,10 @@ docker-compose up -d
 docker-compose logs -f node
 ```
 
-### Test (using the host machines npm/node)
+### Test
 
 ```bash
-cd server
-npm test
+docker-compose exec node npm test
 ```
 
 ### Browser test with web client app
