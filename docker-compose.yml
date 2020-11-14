@@ -1,18 +1,27 @@
 version: "2"
 
 services:
-  node:
-    build: ./node
+  backend:
+    build: ./backend
     volumes:
-      - ./node:/node/
+      - ./backend:/backend/
     depends_on:
       - mongo
     environment:
       SERVER_PORT: 4444
       MONGO_URL: "mongodb://mongo/nodeHeadless"
 
+  frontend:
+    build: ./frontend
+    volumes:
+      - ./frontend:/frontend/
+      - "/frontend/node_modules"
+
   nginx:
     image: "nginx"
+    depends_on:
+      - backend
+      - frontend
     ports:
       - "8080:80"
     volumes:

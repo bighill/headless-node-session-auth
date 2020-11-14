@@ -1,5 +1,5 @@
 FROM node
-WORKDIR /node
+WORKDIR /backend
 COPY package.json .
 RUN npm install --quiet
 COPY . .
