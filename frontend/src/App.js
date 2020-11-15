@@ -10,14 +10,14 @@ function App() {
 
   const [user, setUser] = useState({ ...defaultUser });
 
-  const handshake = () =>
+  const handshake = () => {
     fetch("/api/user")
       .then((res) => {
         setIsLoggedIn(res.status === 200 ? "Yes" : "No");
         return res.json();
       })
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         if (res.data) {
           setUser(res.data);
         } else {
@@ -25,6 +25,7 @@ function App() {
         }
       })
       .catch(console.error);
+  };
 
   useEffect(handshake, []);
 
@@ -33,20 +34,22 @@ function App() {
 
   const handleRegisterSubmit = (ev) => {
     ev.preventDefault();
-
     fetch(`/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then(console.log)
+      .then(() => {
+        setUser("");
+        setPassword("");
+      })
       .catch(console.error);
   };
 
   const handleLoginSubmit = (ev) => {
     ev.preventDefault();
-
     fetch(`/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -57,6 +60,10 @@ function App() {
         console.log(res);
         handshake();
       })
+      .then(() => {
+        setUser("");
+        setPassword("");
+      })
       .catch(console.error);
   };
 
@@ -64,6 +71,13 @@ function App() {
     fetch("/auth/logout")
       .then((res) => res.json())
       .then(handshake)
+      .catch(console.error);
+  };
+
+  const handleApi = (ev) => {
+    fetch("/api/test")
+      .then((res) => res.json())
+      .then(console.log)
       .catch(console.error);
   };
 
@@ -127,8 +141,16 @@ function App() {
         </div>
       </form>
 
-      <div onClick={handleLogout} className="btn">
-        Logout
+      <div>
+        <div onClick={handleLogout} className="btn">
+          Logout
+        </div>
+      </div>
+
+      <div>
+        <div onClick={handleApi} className="btn">
+          API Endpoint
+        </div>
       </div>
     </div>
   );
