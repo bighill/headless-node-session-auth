@@ -1,4 +1,4 @@
-export default ({ isLoggedIn, user }) => {
+const Status = ({ isLoggedIn, user }) => {
   return (
     <div className="block">
       <h2>Auth Status</h2>
@@ -20,3 +20,5 @@ export default ({ isLoggedIn, user }) => {
     </div>
   );
 };
+
+export default Status;

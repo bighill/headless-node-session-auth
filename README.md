@@ -14,16 +14,20 @@ docker-compose build
 docker-compose up -d
 ```
 
-### Watch container logs for node console logs and typescript errors
+### Watch container console logs
 
 ```bash
-docker-compose logs -f node
+docker-compose logs -f frontend
+docker-compose logs -f backend
+docker-compose logs -f nginx
+docker-compose logs -f mongo
 ```
 
 ### Test
 
 ```bash
-docker-compose exec node npm test
+docker-compose exec frontend npm test
+docker-compose exec backend npm test
 ```
 
 ### Browser test with web client app
