@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
-import "./App.css";
+import Header from "./components/Header";
+import Status from "./components/Status";
+import Register from "./components/Register";
+import Login from "./components/Login";
+import Logout from "./components/Logout";
+import Endpoint from "./components/Endpoint";
 
-const defaultUser = { _id: null, email: null };
+const defaultUser = { _id: "Null", email: "Null" };
 
 function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState("");
 
   const [user, setUser] = useState({ ...defaultUser });
@@ -29,129 +32,14 @@ function App() {
 
   useEffect(handshake, []);
 
-  const handleEmailUpdate = (ev) => setEmail(ev.target.value);
-  const handlePasswordUpdate = (ev) => setPassword(ev.target.value);
-
-  const handleRegisterSubmit = (ev) => {
-    ev.preventDefault();
-    fetch(`/auth/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then(console.log)
-      .then(() => {
-        setUser("");
-        setPassword("");
-      })
-      .catch(console.error);
-  };
-
-  const handleLoginSubmit = (ev) => {
-    ev.preventDefault();
-    fetch(`/auth/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        handshake();
-      })
-      .then(() => {
-        setUser("");
-        setPassword("");
-      })
-      .catch(console.error);
-  };
-
-  const handleLogout = (ev) => {
-    fetch("/auth/logout")
-      .then((res) => res.json())
-      .then(handshake)
-      .catch(console.error);
-  };
-
-  const handleApi = (ev) => {
-    fetch("/api/test")
-      .then((res) => res.json())
-      .then(console.log)
-      .catch(console.error);
-  };
-
   return (
     <div className="App">
-      <h1>Node Headless Sample Client</h1>
-
-      <div>
-        <p>
-          Logged in: <span>{isLoggedIn}</span>
-        </p>
-        <p>
-          User _id: <span>{user._id}</span>
-        </p>
-        <p>
-          User email: <span>{user.email}</span>
-        </p>
-      </div>
-
-      <form onSubmit={handleRegisterSubmit}>
-        <div>
-          <input
-            onChange={handleEmailUpdate}
-            value={email}
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-        <div>
-          <input
-            onChange={handlePasswordUpdate}
-            value={password}
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <div>
-          <input onClick={handleRegisterSubmit} defaultValue="Register" />
-        </div>
-      </form>
-
-      <form onSubmit={handleLoginSubmit}>
-        <div>
-          <input
-            onChange={handleEmailUpdate}
-            value={email}
-            type="email"
-            placeholder="Email"
-          />
-        </div>
-        <div>
-          <input
-            onChange={handlePasswordUpdate}
-            value={password}
-            type="password"
-            placeholder="Password"
-          />
-        </div>
-        <div>
-          <input onClick={handleLoginSubmit} defaultValue="Login" />
-        </div>
-      </form>
-
-      <div>
-        <div onClick={handleLogout} className="btn">
-          Logout
-        </div>
-      </div>
-
-      <div>
-        <div onClick={handleApi} className="btn">
-          API Endpoint
-        </div>
-      </div>
+      <Header />
+      <Status isLoggedIn={isLoggedIn} user={user} />
+      <Register />
+      <Login handshake={handshake} />
+      <Logout handshake={handshake} />
+      <Endpoint />
     </div>
   );
 }
