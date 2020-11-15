@@ -33,3 +33,7 @@ docker-compose exec backend npm test
 ### Browser test with web client app
 
 _Open [http://localhost:8080](http://localhost:8080) in a browser_.
+
+## Hierarchy
+
+![Hierarchy Image][overview.drawio.png]
