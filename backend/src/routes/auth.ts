@@ -62,6 +62,9 @@ router.post("/register", (req, res) => {
   });
 });
 
+/*
+ * Login
+ */
 router.post("/login", (req, res, next) => {
   passport.authenticate("local", (err, user, info) => {
     if (err) {
@@ -98,6 +101,9 @@ router.post("/login", (req, res, next) => {
   })(req, res, next);
 });
 
+/*
+ * Logout
+ */
 router.get("/logout", (req, res) => {
   req.logout();
   res.send(Reply({ message: "Logout was successful" }));
