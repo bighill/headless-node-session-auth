@@ -36,4 +36,4 @@ _Open [http://localhost:8080](http://localhost:8080) in a browser_.
 
 ## Hierarchy
 
-![Hierarchy Image][overview.drawio.png]
+![Hierarchy Image][/overview.drawio.png]
