@@ -1,13 +1,28 @@
 import express from "express";
 import bcrypt from "bcrypt";
 import { User } from "../model";
+import Valid from "../util/validate";
 import passport from "passport";
 const router = express.Router();
 
 import Reply from "../util/globalReply";
 
+/*
+ * Register
+ */
 router.post("/register", (req, res) => {
   const { email, password } = req.body;
+
+  if (!Valid.credentials({ email, password })) {
+    /* Invalid email and/or password */
+    return res.status(400).send(
+      Reply({
+        message: "Registration failed",
+        error: "Bad Request",
+      })
+    );
+  }
+
   const newUser = new User({ email, password });
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(newUser.password, salt, (err, hash) => {
@@ -18,6 +33,7 @@ router.post("/register", (req, res) => {
       newUser
         .save()
         .then((user) => {
+          /* Registration is successful */
           return res.send(
             Reply({
               message: "Registration is complete",
@@ -27,6 +43,7 @@ router.post("/register", (req, res) => {
         })
         .catch((err) => {
           if (err.code === 11000) {
+            /* Code 11000 is Mongo duplicate key error */
             return res.status(400).send(
               Reply({
                 message: "Registration failed",
@@ -37,7 +54,7 @@ router.post("/register", (req, res) => {
           return res.status(500).send(
             Reply({
               message: "Registration failed",
-              error: "An internal error has occurred",
+              error: "Internal Error",
             })
           );
         });
@@ -51,23 +68,26 @@ router.post("/login", (req, res, next) => {
       return res.status(500).send(
         Reply({
           message: "Login failed",
-          error: "An internal error has occurred",
+          error: "Internal Error",
         })
       );
     }
     if (!user) {
+      /* User does not exist */
       return res
         .status(401)
         .send(Reply({ message: "Login failed", error: "Invalid credentials" }));
     }
     req.logIn(user, (err) => {
       if (err) {
+        /* Authentication failed */
         return res
-          .status(400)
+          .status(401)
           .send(
             Reply({ message: "Login failed", error: "Invalid credentials" })
           );
       }
+      /* Authentication was successful */
       return res.send(
         Reply({
           message: "Login was successful",
