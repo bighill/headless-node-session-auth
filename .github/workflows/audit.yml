@@ -18,3 +18,19 @@ jobs:
           issue_labels: vulnerability,test
           working_directory: backend
           dedupe_issues: true
+
+  scan-frontend:
+    name: npm audit frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: install dependencies
+        run: cd frontend/ && npm ci
+      - uses: oke-py/npm-audit-action@v1.6.0
+        with:
+          audit_level: moderate
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_assignees: bighill
+          issue_labels: vulnerability,test
+          working_directory: frontend
+          dedupe_issues: true
