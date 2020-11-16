@@ -1,13 +1,13 @@
-name: Run Tests
+name: NPM audit
 
 on: pull_request
 
 jobs:
-  test-backend:
-    name: Backend Test
+  scan-backend:
+    name: Backend audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -21,17 +21,22 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install
-        run: cd backend/ && npm install
+      - name: install dependencies
+        run: cd backend/ && npm ci
+      - uses: oke-py/npm-audit-action@v1.6.0
+        with:
+          audit_level: moderate
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_assignees: bighill
+          issue_labels: vulnerability,test
+          working_directory: backend
+          dedupe_issues: true
 
-      - name: Test
-        run: cd backend/ && npm run test-once
-
-  test-frontend:
-    name: Frontend Test
+  scan-frontend:
+    name: Frontend audit
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
 
       - name: Cache node modules
         uses: actions/cache@v2
@@ -45,8 +50,13 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install
-        run: cd frontend/ && npm install
-
-      - name: Test
-        run: cd frontend/ && npm run test-once
+      - name: install dependencies
+        run: cd frontend/ && npm ci
+      - uses: oke-py/npm-audit-action@v1.6.0
+        with:
+          audit_level: moderate
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          issue_assignees: bighill
+          issue_labels: vulnerability,test
+          working_directory: frontend
+          dedupe_issues: true
