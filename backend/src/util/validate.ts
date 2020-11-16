@@ -1,3 +1,5 @@
+import * as EmailValidator from "email-validator";
+
 interface Value {
   val?: string | undefined;
 }
@@ -8,20 +10,23 @@ interface Credentials {
 }
 
 const validate = {
-  isValidString: (val: Value): boolean => val !== undefined && val !== "",
+  cleanString: (val: Value) => (val === undefined ? "" : val),
+  minChar: (val: string, min: number): boolean => val.length >= min,
 
-  email: (val: Value) => {
-    if (!validate.isValidString(val)) {
-      return false;
+  email: (val: Value): boolean => {
+    const cleanString: string = String(validate.cleanString(val));
+    if (EmailValidator.validate(cleanString)) {
+      return true;
     }
-    return true;
+    return false;
   },
 
   password: (val: Value): boolean => {
-    if (!validate.isValidString(val)) {
-      return false;
+    const cleanString: string = String(validate.cleanString(val));
+    if (validate.minChar(cleanString, 8)) {
+      return true;
     }
-    return true;
+    return false;
   },
 
   credentials: (credentials: Credentials): boolean => {

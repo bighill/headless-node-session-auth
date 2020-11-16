@@ -17,7 +17,8 @@ router.post("/register", (req, res) => {
     /* Invalid email and/or password */
     return res.status(400).send(
       Reply({
-        message: "Registration failed",
+        message:
+          "Registration failed (Email must be valid & Password must be at least 8 characters)",
         error: "Bad Request",
       })
     );
