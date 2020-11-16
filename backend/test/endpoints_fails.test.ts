@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "../src/app";
+import { closeDb } from "../src/lib/db";
 
 const _credentials = {
   email: "testfails@example.com",
@@ -7,6 +8,10 @@ const _credentials = {
 };
 
 describe("Endpoints Fails", () => {
+  afterAll(async () => {
+    await closeDb();
+  });
+
   it("Non-existent GET should fail", () => {
     return request(app).get("/foo").expect(404);
   });

@@ -9,7 +9,7 @@ module.exports = {
     "^.+\\.(ts|tsx)$": "ts-jest",
   },
   // testMatch: ["**/test/**/*.test.(ts|js)"],
-  testMatch: ["**/test/**/*.test.(ts)"],
+  testMatch: ["**/test/**/*.test.ts"],
   testEnvironment: "node",
   preset: "@shelf/jest-mongodb",
 };

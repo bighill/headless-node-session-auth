@@ -15,4 +15,6 @@ mongoose
   )
   .catch(console.log);
 
+export const closeDb = () => mongoose.disconnect();
+
 export default mongoose;
