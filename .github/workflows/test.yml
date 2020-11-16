@@ -1,0 +1,28 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    name: Test Backend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install
+        run: cd backend/ && npm install
+
+      - name: Test
+        run: cd backend/ && npm run test-once
+
+  test:
+    name: Test Frontend
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Install
+        run: cd frontend/ && npm install
+
+      - name: Test
+        run: cd frontend/ && npm run test-once
