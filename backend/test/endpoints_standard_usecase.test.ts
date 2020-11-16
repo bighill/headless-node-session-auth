@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "../src/app";
+import { closeDb } from "../src/lib/db";
 
 let cookie: string;
 
@@ -9,6 +10,10 @@ const _credentials = {
 };
 
 describe("Endpoints : Standard usecase", () => {
+  afterAll(async () => {
+    await closeDb();
+  });
+
   it("Registration should succeed", () => {
     return request(app).post("/auth/register").send(_credentials).expect(200);
   });

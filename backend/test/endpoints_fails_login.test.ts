@@ -1,5 +1,6 @@
 import request from "supertest";
 import app from "../src/app";
+import { closeDb } from "../src/lib/db";
 
 const _credentials = {
   email: "testlogin@example.com",
@@ -7,6 +8,10 @@ const _credentials = {
 };
 
 describe("Endpoints Fails : Login", () => {
+  afterAll(async () => {
+    await closeDb();
+  });
+
   it("Login should fail : missing credentials", () => {
     return request(app).post("/auth/login").send({}).expect(401);
   });
