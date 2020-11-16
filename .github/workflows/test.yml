@@ -3,7 +3,7 @@ name: Run Tests
 on: [push, pull_request]
 
 jobs:
-  test:
+  test-backend:
     name: Test Backend
     runs-on: ubuntu-latest
     steps:
@@ -15,7 +15,7 @@ jobs:
       - name: Test
         run: cd backend/ && npm run test-once
 
-  test:
+  test-frontend:
     name: Test Frontend
     runs-on: ubuntu-latest
     steps:
