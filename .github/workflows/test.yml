@@ -4,7 +4,7 @@ on: pull_request
 
 jobs:
   test-backend:
-    name: Test Backend
+    name: Backend Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -16,7 +16,7 @@ jobs:
         run: cd backend/ && npm run test-once
 
   test-frontend:
-    name: Test Frontend
+    name: Frontend Test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1

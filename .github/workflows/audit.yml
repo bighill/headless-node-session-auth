@@ -1,10 +1,10 @@
-name: npm audit
+name: NPM audit
 
 on: pull_request
 
 jobs:
   scan-backend:
-    name: npm audit backend
+    name: Backend audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +33,7 @@ jobs:
           dedupe_issues: true
 
   scan-frontend:
-    name: npm audit frontend
+    name: Frontend audit
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
