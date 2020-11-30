@@ -10,7 +10,6 @@ import catchall from "./routes/catchall";
 
 const app = express();
 app.set("port", process.env.SERVER_PORT || "4444");
-
 app.use(cors());
 app.use(session);
 app.use(passport.initialize());
