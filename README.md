@@ -1,16 +1,16 @@
 # node-headless-sample
 
 This is an example of headless node app.
-A React frontend is proxied through Nginx such that both the _frontend_ and _backend_ can be served from the same domain and connect via session auth.
+A React frontend is proxied through Nginx such that both the _frontend_ and _backend_ can be served from the same domain. AJAX and web socket communication is authenticated with sessions.
 
 The goal of this project is to create a useful development environment that can relatively easily be deployed to a production environment.
-The process of deploying to a production environment is outside the scope of this project.
 
 ## The Backend
 
 - Node / Typescript
 - Passport session auth with local strategy
 - MongoDB for User records and session storage
+- API enpoints and socket connection are protected by session authentication
 - Tests cover standard operation and test for various Bad Request scenarios
 - Tests utilize a separate Mongo database run in memory
 
