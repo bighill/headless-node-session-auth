@@ -2,20 +2,26 @@ version: "2"
 
 services:
   backend:
-    build: ./backend
+    image: node:lts
+    working_dir: /backend
     volumes:
       - ./backend:/backend/
     depends_on:
       - mongo
+      - redis
+    command: "npm start"
     environment:
       SERVER_PORT: 4444
       MONGO_URL: "mongodb://mongo/nodeHeadless"
+      REDIS_HOST: "redis"
+      REDIS_PORT: 6379
 
   frontend:
-    build: ./frontend
+    image: node:lts
+    working_dir: /frontend
     volumes:
       - ./frontend:/frontend/
-      - "/frontend/node_modules"
+    command: "npm start"
 
   nginx:
     image: "nginx"
@@ -25,9 +31,14 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./nginx.server.conf:/etc/nginx/conf.d/default.conf
+      - ./dev/nginx/server.conf:/etc/nginx/conf.d/default.conf
 
   mongo:
     image: "mongo"
     volumes:
       - ./dev/mongo:/data
+
+  redis:
+    image: "redis"
+    volumes:
+      - ./dev/redis:/data
