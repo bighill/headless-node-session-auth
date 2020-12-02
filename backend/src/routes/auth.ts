@@ -1,6 +1,6 @@
 import express from "express";
 import bcrypt from "bcrypt";
-import { User } from "../model";
+import { User } from "../models/user";
 import Valid from "../util/validate";
 import passport from "passport";
 const router = express.Router();

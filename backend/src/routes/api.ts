@@ -1,7 +1,7 @@
 import express from "express";
 const router = express.Router();
 
-import { User } from "../model";
+import { User } from "../models/user";
 import Reply from "../util/globalReply";
 
 router.get("/test", (req, res) => {
