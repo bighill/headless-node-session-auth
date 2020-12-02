@@ -1,6 +1,6 @@
 import request from "supertest";
 import app from "../src/app";
-import { closeDb } from "../src/lib/db";
+import { closeDb } from "../src/lib/mongodb";
 
 const _credentials = {
   email: "testfails@example.com",
