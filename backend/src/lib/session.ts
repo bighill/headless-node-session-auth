@@ -1,6 +1,6 @@
 import session from "express-session";
 import { default as connectMongo } from "connect-mongo";
-import db from "./db";
+import db from "./mongodb";
 
 const MongoStore = connectMongo(session);
 

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 
 interface UserType extends mongoose.Document {
+  _id?: string;
   email: string;
   password: string;
 }
