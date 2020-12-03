@@ -52,6 +52,7 @@ router.post("/register", (req, res) => {
               })
             );
           }
+          console.log(err);
           return res.status(500).send(
             Reply({
               message: "Registration failed",
