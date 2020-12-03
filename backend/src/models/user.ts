@@ -1,6 +1,7 @@
 import { model, Schema, Model, Document } from "mongoose";
 
 interface UserType extends Document {
+  _id: string;
   email: string;
   password: string;
 }
