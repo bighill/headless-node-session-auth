@@ -7,6 +7,9 @@ import devMW from "./middleware/devMW";
 import auth from "./routes/auth";
 import api from "./routes/api";
 import catchall from "./routes/catchall";
+import mongdb from "./lib/mongodb";
+
+mongdb();
 
 const app = express();
 app.set("port", process.env.SERVER_PORT || "4444");

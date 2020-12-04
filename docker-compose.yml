@@ -11,6 +11,7 @@ services:
       - redis
     command: "npm start"
     environment:
+      IS_DEV: "true"
       SERVER_PORT: 4444
       MONGO_URL: "mongodb://mongo/nodeHeadless"
       REDIS_HOST: "redis"

@@ -26,7 +26,10 @@ io.on("connect", sockets);
 
 server.listen(app.get("port"), () => {
   console.log(`Listening at http://localhost:${app.get("port")}`);
-  console.log(`NODE_ENV is ${app.get("env")}`);
+  console.log(
+    `NODE_ENV=${app.get("env")}`,
+    `IS_DEV=${process.env.IS_DEV ? "true" : "false"}`
+  );
 });
 
 export default server;
