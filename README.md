@@ -9,10 +9,11 @@ The goal of this project is to create a useful development environment that can 
 
 - Node / Typescript
 - Passport session auth with local strategy
-- MongoDB for User records and session storage
+- MongoDB for User records
+- Redis for session storage
 - API enpoints and socket connection are protected by session authentication
 - Tests cover standard operation and test for various Bad Request scenarios
-- Tests utilize a separate Mongo database run in memory
+- Tests mock Mongo & Redis with in-memory databases
 
 ## Backend structure notes
 
@@ -41,10 +42,11 @@ When a PR is created in Github, these _actions_ will fire:
 
 ## Dev Usage
 
-### Build if needed
+### Install
 
 ```bash
-docker-compose build
+docker-compose run frontend npm install
+docker-compose run backend npm install
 ```
 
 ### Run
@@ -67,6 +69,14 @@ docker-compose logs -f mongo
 ```bash
 docker-compose exec frontend npm test
 docker-compose exec backend npm test
+```
+
+### NPM
+
+It is recommended to use NPM via the docker containers rather than from the host terminal.
+
+```bash
+docker-compose exec backend npm install some-package
 ```
 
 ### Browser test with web client app
