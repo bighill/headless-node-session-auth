@@ -1,9 +1,7 @@
 # node-headless-sample
 
-This is an example of headless node app.
-A React frontend is proxied through Nginx such that both the _frontend_ and _backend_ can be served from the same domain. AJAX and web socket communication is authenticated with sessions.
-
-The goal of this project is to create a useful development environment that can relatively easily be deployed to a production environment.
+The goal of this project is to create a sample development environment for a headless NodeJS server and static React site.
+The backend and frontend are proxied through Nginx so both can be served from the same domain to simplify authentication.
 
 ## The Backend
 
@@ -17,7 +15,6 @@ The goal of this project is to create a useful development environment that can 
 
 ## Backend structure notes
 
-- The overall structure is setup to benefit tests and suite this particular application. This structure is definitely not one-size-fits-all; it only serves as an example.
 - The Validate utility is overly simple and not recommended for production.
 - The GlobalReply utility is an opinionated approach, YMMV.
 - During normal operation the app will connect to the MongoDB at `process.env.MONGO_URL`. When tests are run, that variable is overwriten to use the in-memory database thanks to `@shelf/jest-mongodb`.
@@ -31,8 +28,7 @@ The goal of this project is to create a useful development environment that can 
 
 ## Github Actions
 
-Included are some working samples of useful CI/CD tasks for development (though deployment tasks are not included).
-
+Included are some working samples of useful CI/CD tasks for development.
 When a PR is created in Github, these _actions_ will fire:
 
 - Test backend
