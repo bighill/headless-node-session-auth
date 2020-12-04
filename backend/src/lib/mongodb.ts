@@ -10,9 +10,7 @@ export default () => {
       useCreateIndex: true,
     })
     .then(
-      () =>
-        process.env.NODE_ENV === "development" &&
-        console.log("mongo connected...", mongoUri)
+      () => process.env.IS_DEV && console.log("mongo connected...", mongoUri)
     )
     .catch(console.log);
 };

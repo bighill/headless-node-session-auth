@@ -23,21 +23,17 @@ router.post("/register", (req, res) => {
       })
     );
   }
-  console.log("register is valid");
 
   const newUser = new User({ email, password });
   bcrypt.genSalt(10, (err, salt) => {
-    console.log("salt");
     bcrypt.hash(newUser.password, salt, (err, hash) => {
       if (err) {
         throw err;
       }
-      console.log("hash");
       newUser.password = hash;
       newUser
         .save()
         .then((user) => {
-          console.log("saved okay");
           /* Registration is successful */
           return res.send(
             Reply({
@@ -47,7 +43,6 @@ router.post("/register", (req, res) => {
           );
         })
         .catch((err) => {
-          console.log(err);
           if (err.code === 11000) {
             /* Code 11000 is Mongo duplicate key error */
             return res.status(400).send(

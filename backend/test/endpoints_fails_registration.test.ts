@@ -1,6 +1,9 @@
 import request from "supertest";
+import redis from "redis-mock";
 import app from "../src/app";
 import { closeDb } from "../src/lib/mongodb";
+
+jest.mock("redis", () => redis);
 
 const _credentials = {
   email: "testregistration@example.com",

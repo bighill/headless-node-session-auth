@@ -8,8 +8,7 @@ const r = redis.createClient({ host, port });
 r.on(
   "connect",
   () =>
-    process.env.NODE_ENV === "development" &&
-    console.log("redis connected...", `${host}:${port}`)
+    process.env.IS_DEV && console.log("redis connected...", `${host}:${port}`)
 );
 
 export default r;
