@@ -3,8 +3,4 @@ src/**/*.js
 src/**/*.map
 coverage
 globalConfig.json
-
 dist/*
-
-# Do track this in repo to avoid errors on first run before the first `tsc` build
-!dist/src/server.js
