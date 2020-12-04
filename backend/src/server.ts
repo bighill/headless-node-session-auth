@@ -4,6 +4,7 @@ import app from "./app";
 import session from "./lib/session";
 import passport from "./lib/passport";
 import sockets from "./sockets/sockets";
+import Log from "./util/log";
 
 const server = createServer(app);
 const io = new Server(server);
@@ -25,10 +26,11 @@ io.use((socket: any, next) => {
 io.on("connect", sockets);
 
 server.listen(app.get("port"), () => {
-  console.log(`Listening at http://localhost:${app.get("port")}`);
-  console.log(
-    `NODE_ENV=${app.get("env")}`,
-    `IS_DEV=${process.env.IS_DEV ? "true" : "false"}`
+  Log.dev(`Listening at http://localhost:${app.get("port")}`);
+  Log.dev(
+    `app env=${app.get("env")} :: IS_DEV=${
+      process.env.IS_DEV ? "true" : "false"
+    }`
   );
 });
 

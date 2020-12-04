@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import Log from "../util/log";
 
 const mongoUri = String(process.env.MONGO_URL);
 
@@ -9,10 +10,8 @@ export default () => {
       useNewUrlParser: true,
       useCreateIndex: true,
     })
-    .then(
-      () => process.env.IS_DEV && console.log("mongo connected...", mongoUri)
-    )
-    .catch(console.log);
+    .then(() => Log.dev(`mongo connected... ${mongoUri}`))
+    .catch(Log.error);
 };
 
 export const closeDb = () => mongoose.disconnect();

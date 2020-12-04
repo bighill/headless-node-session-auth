@@ -20,10 +20,7 @@ app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-if (app.get("env") === "development") {
-  app.use(devMW);
-}
-
+app.use(devMW);
 app.use("/auth", auth);
 app.use("/api", securedMW, api);
 app.use("*", catchall);
