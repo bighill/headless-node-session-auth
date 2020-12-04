@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
+import Log from "../util/log";
 
 export default (req: Request, res: Response, next: NextFunction) => {
-  console.log(`${req.method} ${req.originalUrl}`);
+  Log.dev(`${req.method} ${req.originalUrl}`);
   next();
 };
