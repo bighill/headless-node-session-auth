@@ -1,5 +1,9 @@
 # Headless Node Session Auth
 
+![Run Tests](https://github.com/bighill/headless-node-session-auth/workflows/Backend%20Node%20Tests/badge.svg)
+![Run Tests](https://github.com/bighill/headless-node-session-auth/workflows/Frontend%20React%20Tests/badge.svg)
+![NPM audit](https://github.com/bighill/headless-node-session-auth/workflows/NPM%20audit/badge.svg)
+
 A sample development environment for a headless NodeJS server and static React site with session auth.
 The backend and frontend are proxied through Nginx so both can be served from the same domain to simplify authentication.
 
