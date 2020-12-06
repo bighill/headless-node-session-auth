@@ -1,7 +1,7 @@
 const Header = (props) => {
   return (
     <div className="block header">
-      <h1>Node Headless Sample</h1>
+      <h1>Headless Node Session Auth</h1>
       <p>
         Be sure to check out the console log
         <br />

@@ -3,6 +3,6 @@ import App from "./App";
 
 test("Renders App component", () => {
   render(<App />);
-  const linkElement = screen.getByText(/node headless/i);
+  const linkElement = screen.getByText(/headless node session auth/i);
   expect(linkElement).toBeInTheDocument();
 });
