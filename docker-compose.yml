@@ -16,6 +16,7 @@ services:
       MONGO_URL: "mongodb://mongo/nodeHeadless"
       REDIS_HOST: "redis"
       REDIS_PORT: 6379
+      SESSION_SECRET: "cdc722f09b746bd818f8b6c4d53796e846137a6b13b703d64a9f60ca619d1fa9"
 
   frontend:
     image: node:lts
