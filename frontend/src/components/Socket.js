@@ -47,7 +47,7 @@ const Socket = ({
     <div className="block">
       <h2>Test Socket Connection</h2>
       <p>
-        <em>desc</em>
+        <em>This will fail silently if not authenticated.</em>
       </p>
 
       <RenderSocketBtn />
