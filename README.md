@@ -1,4 +1,4 @@
-# headless-node-session-auth
+# Headless Node Session Auth
 
 A sample development environment for a headless NodeJS server and static React site with session auth.
 The backend and frontend are proxied through Nginx so both can be served from the same domain to simplify authentication.
